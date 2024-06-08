@@ -1,6 +1,7 @@
 body {
   font-family: 'Pixel Emulator', cursive;
   background-color: #FF69B4;
+  font-size: 50px;
   color: #00FF00;
   background-image: url('90s-pattern.gif'); /* Replace with your image */
   background-repeat: repeat;
@@ -18,12 +19,13 @@ body {
 h1 {
   font-family: 'Impact', sans-serif;
   font-size: 50px;
-  text-shadow: 2px 2px 5px #FF0000; /* Red drop shadow */
+  text-shadow: 5px 5px 10px #FF0000; /* Red drop shadow */
 }
 
 a {
   color: #00FFFF; /* Electric blue */
   text-decoration: underline; /* Add underline to links */
+  font-size: 50px;
   margin-bottom: 20px; /* Add space below the link */
 }
 
