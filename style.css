@@ -18,14 +18,15 @@ body {
 
 h1 {
   font-family: 'Impact', sans-serif;
-  font-size: 50px;
+  font-size: 2em;
   text-shadow: 5px 5px 10px #FF0000; /* Red drop shadow */
-}
+  text-align: center;
+ }
 
 a {
   color: #00FFFF; /* Electric blue */
   text-decoration: underline; /* Add underline to links */
-  font-size: 50px;
+  font-size: 2em;
   margin-bottom: 20px; /* Add space below the link */
 }
 
@@ -33,7 +34,7 @@ a {
     width: 90vw;
     max-width: 600px;
     /* Set a fixed height for the carousel */
-    height: 600px; /* Adjust as needed based on your desired height */
+    height: auto; /* Adjust as needed based on your desired height */
     overflow: hidden;
     position: relative;
 }
@@ -52,10 +53,10 @@ a {
 }
 
 /* Adjust carousel width for smaller screens */
-@media (max-width: 600px) {
-    .image-carousel {
-        width: 100vw; /* 100% of viewport width on small screens */
-    }
+@media (max-width: 768px) {
+    body { font-size: 24px; }
+    h1 { font-size: 36px; }
+    .image-carousel { width: 95vw; }
 }
 
 .prev-button, .next-button {
