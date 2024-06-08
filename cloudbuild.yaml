@@ -3,17 +3,14 @@ options:
   logging: CLOUD_LOGGING_ONLY
 
 steps:
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['install']
-- name: 'gcr.io/cloud-builders/gcloud'
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: 'bash'
   args:
   - '-c'
   - |
-    gcloud builds submit --tag gcr.io/$PROJECT_ID/wedding-rsvp:$SHORT_SHA  # Custom image tag
-    gcloud run deploy wedding-rsvp \  # Service name
-        --image gcr.io/$PROJECT_ID/wedding-rsvp:$SHORT_SHA \
-        --platform managed \
-        --region us-central1 \   
+    npm install --production
+    gcloud run deploy wedding-rsvp \
+        --source . \
+        --region us-central1 \
         --allow-unauthenticated 
 timeout: '10m'
