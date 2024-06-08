@@ -2,5 +2,5 @@ steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
 - name: 'gcr.io/cloud-builders/npm'
-  args: ['run', 'start'] # Or use 'serve' if you have that npm script
+  args: ['run', 'server.js'] # Run the server with 'node server.js'
 timeout: '1600s'
