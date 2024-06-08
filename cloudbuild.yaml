@@ -5,6 +5,7 @@ options:
 steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
-- name: 'gcr.io/cloud-builders/node:18'  
+- name: 'node:18'  # Using the official Node.js image from Docker Hub
+  entrypoint: 'node'
   args: ['server.js']
 timeout: '1600s'
