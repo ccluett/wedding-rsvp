@@ -4,42 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding RSVP</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        .container { max-width: 600px; margin: auto; padding: 20px; }
-        form { display: flex; flex-direction: column; }
-        label { margin-top: 10px; }
-        input, select { margin-top: 5px; padding: 10px; }
-        button { margin-top: 20px; padding: 10px; background-color: #4CAF50; color: white; border: none; }
-        #message { margin-top: 10px; }
-        /* Add 90s styling for the RSVP page if desired */
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container rsvp-container">
         <h1>Wedding RSVP</h1>
-        <form id="rsvp-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+        <form id="rsvp-form" class="rsvp-form">
+            <label for="name" class="rsvp-label">Name:</label>
+            <input type="text" id="name" name="name" required class="rsvp-input">
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <label for="email" class="rsvp-label">Email:</label>
+            <input type="email" id="email" name="email" required class="rsvp-input">
 
-            <label for="attending">Will you be attending?</label>
-            <select id="attending" name="attending" required>
+            <label for="attending" class="rsvp-label">Will you be attending?</label>
+            <select id="attending" name="attending" required class="rsvp-select">
                 <option value="true">Yes</option>
                 <option value="false">No</option>
             </select>
 
-            <label for="guests">Number of guests (including yourself):</label>
-            <input type="number" id="guests" name="guests" min="1" required>
+            <label for="guests" class="rsvp-label">Number of guests (including yourself):</label>
+            <input type="number" id="guests" name="guests" min="1" required class="rsvp-input">
 
-            <button type="submit">Submit RSVP</button>
+            <button type="submit" class="rsvp-button">Submit RSVP</button>
         </form>
 
         <div id="message"></div> 
 
-        <div id="home-link" style="display: none;">
+        <div id="home-link" class="home-link" style="display: none;">
             <a href="/">Back to Home</a>
         </div>
     </div>
