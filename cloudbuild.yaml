@@ -1,13 +1,11 @@
 # cloudbuild.yaml
 options:
-  logging: CLOUD_LOGGING_ONLY  # Or logging: NONE 
+  logging: GCS_ONLY # Choose either GCS_ONLY or CLOUD_LOGGING_ONLY
 
 steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
-- name: 'gcr.io/cloud-builders/node:18'  # Specify Node.js version 18
+- name: 'gcr.io/cloud-builders/node:18'  
   args: ['server.js']
-options:
-  logging: GCS_LOGGING
-logsBucket: 'gs://wedding-rsvp-build-logs'  
+logsBucket: 'gs://wedding-rsvp-build-logs'  # Replace with your actual bucket name
 timeout: '1600s'
