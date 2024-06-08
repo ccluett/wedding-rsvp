@@ -1,6 +1,6 @@
 # cloudbuild.yaml
 options:
-  logging: GCS_ONLY # Choose either GCS_ONLY or CLOUD_LOGGING_ONLY
+  logging: CLOUD_LOGGING_ONLY  # Using Cloud Logging only
 
 steps:
 - name: 'gcr.io/cloud-builders/npm'
