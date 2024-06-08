@@ -5,6 +5,9 @@ options:
 steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
-- name: 'gcr.io/cloud-builders/node'  # Use the 'node' image
-  args: ['server.js']  # Directly run server.js
+- name: 'gcr.io/cloud-builders/node:18'  # Specify Node.js version 18
+  args: ['server.js']
+options:
+  logging: GCS_LOGGING
+logsBucket: 'gs://wedding-rsvp-build-logs'  
 timeout: '1600s'
