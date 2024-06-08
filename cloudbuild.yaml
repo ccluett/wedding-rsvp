@@ -7,5 +7,4 @@ steps:
   args: ['install']
 - name: 'gcr.io/cloud-builders/node:18'  
   args: ['server.js']
-logsBucket: 'gs://wedding-rsvp-build-logs'  # Replace with your actual bucket name
 timeout: '1600s'
