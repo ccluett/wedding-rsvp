@@ -2,16 +2,20 @@
 options:
   logging: CLOUD_LOGGING_ONLY  # Using Cloud Logging only
 
+# cloudbuild.yaml
 steps:
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'  # Cloud SDK image
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        npm install --production    # Install dependencies
-        gcloud run deploy <YOUR_SERVICE_NAME> \   # Deploy to Cloud Run
-            --source . \
-            --region <YOUR_REGION> \
-            --allow-unauthenticated 
-            #--set-env-vars MONGODB_URI=<YOUR_MONGODB_URI>  <- Removed this line
-timeout: 10m  
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install']
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    gcloud builds submit --tag gcr.io/$PROJECT_ID/$REPO_NAME
+    gcloud run deploy $REPO_NAME \
+      --image gcr.io/$PROJECT_ID/$REPO_NAME \
+      --platform managed \
+      --region us-central1 \
+      --allow-unauthenticated
+
+timeout: '10m'
