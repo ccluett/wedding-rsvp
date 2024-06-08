@@ -3,9 +3,15 @@ options:
   logging: CLOUD_LOGGING_ONLY  # Using Cloud Logging only
 
 steps:
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['install']
-- name: 'node:18'  # Using the official Node.js image from Docker Hub
-  entrypoint: 'node'
-  args: ['server.js']
-timeout: '1600s'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'  # Cloud SDK image
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        npm install --production    # Install dependencies
+        gcloud run deploy <YOUR_SERVICE_NAME> \   # Deploy to Cloud Run
+            --source . \
+            --region <YOUR_REGION> \
+            --allow-unauthenticated 
+            #--set-env-vars MONGODB_URI=<YOUR_MONGODB_URI>  <- Removed this line
+timeout: 10m  
