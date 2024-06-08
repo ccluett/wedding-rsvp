@@ -1,0 +1,77 @@
+body {
+  font-family: 'Pixel Emulator', cursive;
+  background-color: #FF69B4;
+  color: #00FF00;
+  background-image: url('90s-pattern.gif'); /* Replace with your image */
+  background-repeat: repeat;
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    /* justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    min-height: 100vh; /* Ensure body covers the full viewport height */
+    margin: 0; /* Remove default body margins */
+}
+
+h1 {
+  font-family: 'Impact', sans-serif;
+  font-size: 50px;
+  text-shadow: 2px 2px 5px #FF0000; /* Red drop shadow */
+}
+
+a {
+  color: #00FFFF; /* Electric blue */
+  text-decoration: underline; /* Add underline to links */
+  margin-bottom: 20px; /* Add space below the link */
+}
+
+.image-carousel {
+    width: 90vw;
+    max-width: 600px;
+    /* Set a fixed height for the carousel */
+    height: 600px; /* Adjust as needed based on your desired height */
+    overflow: hidden;
+    position: relative;
+}
+
+.image-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%; /* Ensure the image container takes full carousel height */
+    align-items: center; /* Vertically center images within the container */
+}
+
+.image-container img {
+    min-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Adjust carousel width for smaller screens */
+@media (max-width: 600px) {
+    .image-carousel {
+        width: 100vw; /* 100% of viewport width on small screens */
+    }
+}
+
+.prev-button, .next-button {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+}
+
+.prev-button {
+    left: 10px;
+}
+
+.next-button {
+    right: 10px;
+}

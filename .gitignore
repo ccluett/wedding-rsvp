@@ -1,0 +1,11 @@
+# Dependencies
+node_modules/
+
+# Production build (if you have one)
+/build
+
+# Logs
+*.log
+
+# Environment variables
+.env
