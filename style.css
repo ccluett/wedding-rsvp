@@ -28,7 +28,7 @@ a {
   text-decoration: underline; /* Add underline to links */
   font-size: 2em;
   margin-bottom: 20px; /* Add space below the link */
-}
+  }
 
 .image-carousel {
     width: 90vw;
@@ -91,6 +91,8 @@ a {
     padding: 20px;
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 0 10px #00FFFF; /* Neon blue box shadow */
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 /* RSVP Form */
