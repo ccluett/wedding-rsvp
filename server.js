@@ -37,11 +37,11 @@ app.get('/rsvp', (req, res) => {
 });
 
 // Access code validation
-const validCode = ['pip', 'Pip', 'PIP']; // Replace with your actual code
+const validCodes = ['pip', 'Pip', 'PIP']; // Replace with your actual code
 
 app.post('/api/check-code', (req, res) => {
     const enteredCode = req.body.code;
-    if (enteredCode === validCode) {
+    if (validCodes.includes(enteredCode)) {
         res.sendStatus(200); // OK
     } else {
         res.sendStatus(401); // Unauthorized
