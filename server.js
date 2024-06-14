@@ -36,6 +36,18 @@ app.get('/rsvp', (req, res) => {
   res.redirect('/rsvp.html'); 
 });
 
+// Access code validation
+const validCode = 'pip'; // Replace with your actual code
+
+app.post('/api/check-code', (req, res) => {
+    const enteredCode = req.body.code;
+    if (enteredCode === validCode) {
+        res.sendStatus(200); // OK
+    } else {
+        res.sendStatus(401); // Unauthorized
+    }
+});
+
 // Handle RSVP form submissions (with logging)
 app.post('/api/rsvp', (req, res) => {
   console.log('Received RSVP data:', req.body); 

@@ -9,45 +9,81 @@
 <body>
     <div class="container rsvp-container">
         <h1>Wedding RSVP</h1>
-        <form id="rsvp-form" class="rsvp-form">
-            <label for="name" class="rsvp-label">Name:</label>
-            <input type="text" id="name" name="name" required class="rsvp-input">
 
-            <label for="email" class="rsvp-label">Email:</label>
-            <input type="email" id="email" name="email" required class="rsvp-input">
-
-            <label for="attending" class="rsvp-label">Will you be attending?</label>
-            <select id="attending" name="attending" required class="rsvp-select">
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-            </select>
-
-            <label for="guests" class="rsvp-label">Number of guests (including yourself):</label>
-            <input type="number" id="guests" name="guests" min="1" required class="rsvp-input">
-
-            <button type="submit" class="rsvp-button">Submit RSVP</button>
+        <form id="code-form">
+            <label for="accessCode" class="rsvp-label">Access Code:</label>
+            <input type="text" id="accessCode" name="accessCode" required class="rsvp-input">
+            <button type="button" id="checkCodeBtn" class="rsvp-button">Check Code</button>
         </form>
 
-        <div id="message"></div> 
+        <div id="rsvp-form-container" style="display: none;">
+            <form id="rsvp-form" class="rsvp-form">
+                <label for="name" class="rsvp-label">Name:</label>
+                <input type="text" id="name" name="name" required class="rsvp-input">
 
-        <div id="home-link" class="home-link" style="display: none;">
-            <a href="/">Back to Home</a>
+                <label for="email" class="rsvp-label">Email:</label>
+                <input type="email" id="email" name="email" required class="rsvp-input">
+
+                <label for="attending" class="rsvp-label">Will you be attending?</label>
+                <select id="attending" name="attending" required class="rsvp-select">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+
+                <label for="guests" class="rsvp-label">Number of guests (including yourself):</label>
+                <input type="number" id="guests" name="guests" min="1" required class="rsvp-input">
+
+                <button type="submit" class="rsvp-button">Submit RSVP</button>
+            </form>
+
+            <div id="message"></div> 
+
+            <div id="home-link" class="home-link" style="display: none;">
+                <a href="/">Back to Home</a>
+            </div>
         </div>
-    </div>
 
+    </div>
+    
     <script>
-        const form = document.getElementById('rsvp-form');
+        const codeForm = document.getElementById('code-form');
+        const checkCodeBtn = document.getElementById('checkCodeBtn');
+        const rsvpFormContainer = document.getElementById('rsvp-form-container');
+        const rsvpForm = document.getElementById('rsvp-form');
         const messageDiv = document.getElementById('message');
         const homeLinkDiv = document.getElementById('home-link');
 
-        form.addEventListener('submit', async (event) => {
+        checkCodeBtn.addEventListener('click', async () => {
+            const code = codeForm.querySelector('#accessCode').value;
+
+            try {
+                const response = await fetch('/api/check-code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code }),
+                });
+
+                if (response.ok) {
+                    // Code is valid
+                    codeForm.style.display = 'none'; // Hide the code form
+                    rsvpFormContainer.style.display = 'block'; // Show the RSVP form
+                } else {
+                    messageDiv.textContent = '';
+                }
+            } catch (error) {
+                messageDiv.textContent = 'An error occurred';
+                console.error(error);
+            }
+        });
+
+        rsvpForm.addEventListener('submit', async (event) => {
             event.preventDefault();
 
             // Get form values
-            const name = form.querySelector('#name').value;
-            const email = form.querySelector('#email').value;
-            const attending = form.querySelector('#attending').value === 'true';
-            const guests = parseInt(form.querySelector('#guests').value, 10);
+            const name = rsvpForm.querySelector('#name').value;
+            const email = rsvpForm.querySelector('#email').value;
+            const attending = rsvpForm.querySelector('#attending').value === 'true';
+            const guests = parseInt(rsvpForm.querySelector('#guests').value, 10);
 
             // Create data object for the request body
             const rsvpData = { name, email, attending, guests };
@@ -63,7 +99,7 @@
                 // Handle response
                 if (response.ok) {
                     messageDiv.textContent = 'RSVP submitted successfully!';
-                    form.reset();
+                    rsvpForm.reset();
                     homeLinkDiv.style.display = 'block'; // Show the home link
                 } else {
                     // Handle errors from the backend (if any)
@@ -72,7 +108,7 @@
                 }
             } catch (error) {
                 // Handle network or other errors
-                messageDiv.textContent = 'An error occurred while submitting the RSVP.';
+                messageDiv.textContent = 'An error occurred while submitting the RSVP. If error persists, please email cluett26@gmail.com.';
                 console.error(error);
             }
         });
