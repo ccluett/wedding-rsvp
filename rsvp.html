@@ -18,8 +18,8 @@
 
         <div id="rsvp-form-container" style="display: none;">
             <form id="rsvp-form" class="rsvp-form">
-                <label for="name" class="rsvp-label">Name:</label>
-                <input type="text" id="name" name="name" required class="rsvp-input">
+                <label for="name" class="rsvp-label">Name(s) on Invitation:</label>
+                <input type="text" id="name" name="name" placeholder="e.g., Jane & John Doe" required class="rsvp-input">
 
                 <label for="email" class="rsvp-label">Email:</label>
                 <input type="email" id="email" name="email" required class="rsvp-input">
@@ -30,8 +30,8 @@
                     <option value="false">No</option>
                 </select>
 
-                <label for="guests" class="rsvp-label">Number of guests (including yourself):</label>
-                <input type="number" id="guests" name="guests" min="1" required class="rsvp-input">
+                <label for="guests" class="rsvp-label">Number of guests:</label>
+                <input type="number" id="guests" name="guests" min="1" max="2" required class="rsvp-input">
 
                 <button type="submit" class="rsvp-button">Submit RSVP</button>
             </form>
@@ -64,9 +64,8 @@
                 });
 
                 if (response.ok) {
-                    // Code is valid
-                    codeForm.style.display = 'none'; // Hide the code form
-                    rsvpFormContainer.style.display = 'block'; // Show the RSVP form
+                    codeForm.style.display = 'none'; 
+                    rsvpFormContainer.style.display = 'block'; 
                 } else {
                     messageDiv.textContent = '';
                 }
@@ -79,35 +78,34 @@
         rsvpForm.addEventListener('submit', async (event) => {
             event.preventDefault();
 
-            // Get form values
             const name = rsvpForm.querySelector('#name').value;
             const email = rsvpForm.querySelector('#email').value;
             const attending = rsvpForm.querySelector('#attending').value === 'true';
             const guests = parseInt(rsvpForm.querySelector('#guests').value, 10);
 
-            // Create data object for the request body
+            if (guests > 2) {
+                messageDiv.textContent = 'Maximum 2 guests allowed per invitation.';
+                return; 
+            }
+
             const rsvpData = { name, email, attending, guests };
 
             try {
-                // Send data to backend
                 const response = await fetch('/api/rsvp', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(rsvpData),
                 });
 
-                // Handle response
                 if (response.ok) {
                     messageDiv.textContent = 'RSVP submitted successfully!';
                     rsvpForm.reset();
-                    homeLinkDiv.style.display = 'block'; // Show the home link
+                    homeLinkDiv.style.display = 'block'; 
                 } else {
-                    // Handle errors from the backend (if any)
                     const errorData = await response.json(); 
                     messageDiv.textContent = errorData.message || 'Error submitting RSVP';
                 }
             } catch (error) {
-                // Handle network or other errors
                 messageDiv.textContent = 'An error occurred while submitting the RSVP. If error persists, please email cluett26@gmail.com.';
                 console.error(error);
             }

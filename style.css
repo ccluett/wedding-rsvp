@@ -123,6 +123,9 @@ a {
     font-family: 'Pixel Emulator', cursive;
     font-size: 1em;  /* Scaled down font size */
 }
+.rsvp-input::placeholder { /* Style the placeholder text */
+    color: lightgray; /* Or choose another shade that fits your theme */
+}
 
 /* Button */
 .rsvp-button {
