@@ -48,10 +48,45 @@
     <script>
         const codeForm = document.getElementById('code-form');
         const checkCodeBtn = document.getElementById('checkCodeBtn');
+        const accessCodeInput = document.getElementById('accessCode');
         const rsvpFormContainer = document.getElementById('rsvp-form-container');
         const rsvpForm = document.getElementById('rsvp-form');
         const messageDiv = document.getElementById('message');
         const homeLinkDiv = document.getElementById('home-link');
+
+        // Function to check the access code
+        async function checkCode() {
+            const code = accessCodeInput.value;
+
+            try {
+                const response = await fetch('/api/check-code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code }),
+                });
+
+                if (response.ok) {
+                    codeForm.style.display = 'none'; 
+                    rsvpFormContainer.style.display = 'block'; 
+                } else {
+                    messageDiv.textContent = 'Invalid code. Please try again.';
+                }
+            } catch (error) {
+                messageDiv.textContent = 'An error occurred';
+                console.error(error);
+            }
+        }
+
+        // Event listener for the button click
+        checkCodeBtn.addEventListener('click', checkCode);
+
+        // Event listener for the Enter key press
+        accessCodeInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent form submission
+                checkCode();
+            }
+        });
 
         checkCodeBtn.addEventListener('click', async () => {
             const code = codeForm.querySelector('#accessCode').value;

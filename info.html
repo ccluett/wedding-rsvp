@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Information</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container rsvp-container">
+        <h1>Wedding Information</h1>
+
+        <form id="code-form">
+            <label for="accessCode" class="rsvp-label">Access Code:</label>
+            <input type="text" id="accessCode" name="accessCode" required class="rsvp-input">
+            <button type="button" id="checkCodeBtn" class="rsvp-button">Check Code</button>
+        </form>
+
+        <div id="info-content" style="display: none;">
+            <p>Date: September 21st, 2024</p>
+            <p>Time: 5pm</p>
+            <p>Location: 1116 Greenspring Valley Rd, Timonium, MD 21093</p>
+            <p>Attire: Cocktail</p>
+        </div>
+
+        <div id="message"></div>
+
+        <div id="home-link" class="home-link">
+            <a href="/">Back to Home</a>
+        </div>
+    </div>
+    
+    <script>
+        const codeForm = document.getElementById('code-form');
+        const checkCodeBtn = document.getElementById('checkCodeBtn');
+        const accessCodeInput = document.getElementById('accessCode');
+        const infoContent = document.getElementById('info-content');
+        const messageDiv = document.getElementById('message');
+
+        async function checkCode() {
+            const code = accessCodeInput.value;
+
+            try {
+                const response = await fetch('/api/check-code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code }),
+                });
+
+                if (response.ok) {
+                    codeForm.style.display = 'none';
+                    infoContent.style.display = 'block';
+                } else {
+                    messageDiv.textContent = 'Invalid code. Please try again.';
+                }
+            } catch (error) {
+                messageDiv.textContent = 'An error occurred';
+                console.error(error);
+            }
+        }
+
+        checkCodeBtn.addEventListener('click', checkCode);
+
+        accessCodeInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                checkCode();
+            }
+        });
+    </script>
+</body>
+</html>

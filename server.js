@@ -26,18 +26,19 @@ const rsvpSchema = new mongoose.Schema({
 
 const RSVP = mongoose.model('RSVP', rsvpSchema);
 
-// Serve the index.html for the root route
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+// Serve the rsvp.html for the '/rsvp' route
+app.get('/rsvp', (req, res) => {
+  res.sendFile(path.join(__dirname, 'rsvp.html'));
 });
 
-// Serve the rsvp.html for the '/rsvp' route (redirect)
-app.get('/rsvp', (req, res) => {
-  res.redirect('/rsvp.html'); 
+// Serve the info.html for the '/info' route
+app.get('/info', (req, res) => {
+  res.sendFile(path.join(__dirname, 'info.html'));
 });
+
 
 // Access code validation
-const validCodes = ['pip', 'Pip', 'PIP']; // Replace with your actual code
+const validCodes = ['pip', 'Pip', 'PIP']; // 
 
 app.post('/api/check-code', (req, res) => {
     const enteredCode = req.body.code;

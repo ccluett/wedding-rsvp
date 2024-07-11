@@ -1,33 +1,55 @@
 body {
-  font-family: 'Pixel Emulator', cursive;
-  background-color: #FF69B4;
-  font-size: 50px;
-  color: #00FF00;
-  background-image: url('90s-pattern.gif'); /* Replace with your image */
-  background-repeat: repeat;
-}
-
-body {
+    font-family: 'Pixel Emulator', cursive;
+    background-color: #FF69B4;
+    font-size: 40px;
+    color: #00FF00;
     display: flex;
-    flex-direction: column; /* Align items vertically */
-    /* justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
-    min-height: 100vh; /* Ensure body covers the full viewport height */
-    margin: 0; /* Remove default body margins */
-}
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 
-h1 {
-  font-family: 'Impact', sans-serif;
-  font-size: 2em;
-  text-shadow: 5px 5px 10px #FF0000; /* Red drop shadow */
-  text-align: center;
+    background-image: url('images/memphis-pattern.jpg');
+    background-repeat: repeat;
+    background-size: 14em;
+    
+    /* background-image: 
+        linear-gradient(45deg, #FF69B4 25%, transparent 25%), 
+        linear-gradient(-45deg, #FF69B4 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #FF69B4 75%),
+        linear-gradient(-45deg, transparent 75%, #FF69B4 75%);
+    background-size: 100px 100px;
+    background-position: 0 0, 0 50px, 50px -50px, -50px 0px;
+    background-color: #FF1493; /* Hot pink for the alternate squares */  
+
  }
+  
+ h1, p, a {
+    background-color: rgba(255, 0, 183, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+  }
 
-a {
-  color: #00FFFF; /* Electric blue */
-  text-decoration: underline; /* Add underline to links */
-  font-size: 2em;
-  margin-bottom: 20px; /* Add space below the link */
+  h1 {
+    font-family: 'Impact', sans-serif;
+    font-size: 2em;
+    text-shadow: 5px 5px 10px #FF0000;
+    text-align: center;
+    margin-bottom: 0.25em; /* Reduced from default */
+  }
+  
+  p {
+    font-size: 1.5em;
+    margin-top: 0.1em; /* Add this to reduce space above paragraphs */
+    margin-bottom: 0.1em; /* Add this to reduce space below paragraphs */
+  }
+  
+  a {
+    color: #00FFFF;
+    text-decoration: underline;
+    font-size: 2em;
+    margin-top: 0.1em; /* Reduced from 20px */
+    margin-bottom: 0.1em; /* Reduced from 20px */
   }
 
 .image-carousel {
@@ -58,9 +80,21 @@ a {
 /* Adjust carousel width for smaller screens */
 @media (max-width: 768px) {
     body { font-size: 24px; }
-    h1 { font-size: 36px; }
-    .image-carousel { width: 95vw; }
-}
+    h1 { 
+        margin-bottom: 0.3em; /* Further reduce spacing on small screens */
+      }
+      p {
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+      }
+      a {
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+      }
+      .image-carousel { 
+        margin-top: 0.5em;
+      }
+    }
 
 .prev-button, .next-button {
     cursor: pointer;
@@ -82,12 +116,9 @@ a {
     right: 10px;
 }
 
-
-
-
 /* RSVP Container */
 .rsvp-container {
-    background-color: rgba(255, 105, 180, 0.8); /* Semi-transparent neon pink */
+    background-color: rgba(255, 0, 183, 0.8); /* Semi-transparent neon pink */
     padding: 20px;
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 0 10px #00FFFF; /* Neon blue box shadow */
