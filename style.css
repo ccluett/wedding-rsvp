@@ -1,5 +1,5 @@
 body {
-    font-family: 'Pixel Emulator', cursive;
+    font-family: Georgia, serif;
     background-color: #f826a1;
     font-size: 40px;
     color: #00FF00;
@@ -39,7 +39,7 @@ body {
   }
   
   p {
-    font-size: 1.5em;
+    font-size: 1.em;
     margin-top: 0.1em; /* Add this to reduce space above paragraphs */
     margin-bottom: 0.1em; /* Add this to reduce space below paragraphs */
   }
@@ -47,9 +47,9 @@ body {
   a {
     color: #00FFFF;
     text-decoration: underline;
-    font-size: 2em;
+    font-size: 1.5em;
     margin-top: 0.1em; /* Reduced from 20px */
-    margin-bottom: 0.1em; /* Reduced from 20px */
+    margin-bottom: 0em; /* Reduced from 20px */
   }
 
 .image-carousel {
