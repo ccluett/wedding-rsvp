@@ -49,7 +49,7 @@ body {
     text-decoration: underline;
     font-size: 1.5em;
     margin-top: 0.1em; /* Reduced from 20px */
-    margin-bottom: 0em; /* Reduced from 20px */
+    margin-bottom: 0.1em; /* Reduced from 20px */
   }
 
 .image-carousel {
@@ -67,7 +67,7 @@ body {
     height: 100%; /* Ensure the image container takes full carousel height */
     align-items: center; /* Vertically center images within the container */
     margin-bottom: 50px;
-    margin-top: 0em;
+    margin-top: 0.1em;
 }
 
 .image-container img {
