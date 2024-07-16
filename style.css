@@ -67,6 +67,7 @@ body {
     height: 100%; /* Ensure the image container takes full carousel height */
     align-items: center; /* Vertically center images within the container */
     margin-bottom: 50px;
+    margin-top: 0em;
 }
 
 .image-container img {
@@ -151,7 +152,7 @@ body {
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
     color: #00FF00; /* Lime green text */
-    font-family: 'Pixel Emulator', cursive;
+    font-family: Georgia, serif;
     font-size: 1em;  /* Scaled down font size */
 }
 .rsvp-input::placeholder { /* Style the placeholder text */
