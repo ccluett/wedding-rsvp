@@ -31,7 +31,7 @@
                 </select>
 
                 <label for="guests" class="rsvp-label">Number of attendees:</label>
-                <input type="number" id="guests" name="guests" min="1" max="2" required class="rsvp-input">
+                <input type="number" id="guests" name="guests" min="0" max="2" required class="rsvp-input">
 
                 <button type="submit" class="rsvp-button">Submit RSVP</button>
             </form>
@@ -141,7 +141,7 @@
                     messageDiv.textContent = errorData.message || 'Error submitting RSVP';
                 }
             } catch (error) {
-                messageDiv.textContent = 'An error occurred while submitting the RSVP. If error persists, please email cluett26@gmail.com.';
+                messageDiv.textContent = 'An error occurred while submitting the RSVP. If error persists, please email ccluett@gmail.com.';
                 console.error(error);
             }
         });
