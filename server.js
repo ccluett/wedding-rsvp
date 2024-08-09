@@ -21,7 +21,7 @@ const rsvpSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
   attending: { type: Boolean, required: true },
-  guests: { type: Number, required: true, min: 1 },
+  guests: { type: Number, required: true, min: 0 },
 });
 
 const RSVP = mongoose.model('RSVP', rsvpSchema);

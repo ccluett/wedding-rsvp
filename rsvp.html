@@ -118,8 +118,8 @@
             const attending = rsvpForm.querySelector('#attending').value === 'true';
             const guests = parseInt(rsvpForm.querySelector('#guests').value, 10);
 
-            if (guests > 2) {
-                messageDiv.textContent = 'Maximum 2 guests allowed per invitation.';
+            if (isNaN(guests) || guests < 0 || guests > 2) {
+                messageDiv.textContent = 'Please enter a valid number of guests.';
                 return; 
             }
 
